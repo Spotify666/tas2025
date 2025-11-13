@@ -1,0 +1,1249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>The Athletic Society</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Premium indoor & outdoor sports facility with courts, cricket nets, padel, pickleball, swimming pool and healthy food space." />
+
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #020202;
+      --bg-elevated: #0b0b0b;
+      --bg-soft: #101010;
+      --fg: #f5f5f5;
+      --muted: #a3a3a3;
+      --accent: #ffffff;
+      --border-subtle: #262626;
+      --radius-lg: 1.5rem;
+      --radius-md: 1rem;
+      --transition-fast: 180ms ease-out;
+      --transition-med: 220ms ease-out;
+      --shadow-soft: 0 18px 40px rgba(0, 0, 0, 0.7);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top, #171717 0, #020202 55%);
+      color: var(--fg);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .page {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 24px 20px 64px;
+    }
+
+    /* ---------------- NAVBAR ---------------- */
+
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 40;
+      backdrop-filter: blur(18px);
+      background: linear-gradient(to bottom, rgba(2,2,2,0.9), rgba(2,2,2,0.7));
+      border-radius: 999px;
+      border: 1px solid #262626;
+      margin-bottom: 28px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 18px;
+    }
+
+    .nav-left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .logo-mark {
+      width: 28px;
+      height: 28px;
+      border-radius: 999px;
+      border: 1px solid #3f3f3f;
+      background: radial-gradient(circle at 30% 20%, #fafafa, #404040);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      font-weight: 700;
+      color: #050505;
+      box-shadow: 0 0 0 1px rgba(0,0,0,0.7), 0 12px 25px rgba(0,0,0,0.8);
+    }
+
+    .brand {
+      display: flex;
+      flex-direction: column;
+      line-height: 1.1;
+    }
+
+    .brand-title {
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+    }
+
+    .brand-sub {
+      font-size: 11px;
+      color: var(--muted);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 14px;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+    }
+
+    .nav-links a {
+      padding: 6px 10px;
+      border-radius: 999px;
+      border: 1px solid transparent;
+      color: #d4d4d4;
+      transition: background var(--transition-fast), border-color var(--transition-fast), color var(--transition-fast), transform var(--transition-fast);
+    }
+
+    .nav-links a:hover {
+      background: #181818;
+      border-color: #404040;
+      color: #fafafa;
+      transform: translateY(-1px);
+    }
+
+    .nav-cta {
+      font-size: 11px;
+      padding: 6px 14px;
+      border-radius: 999px;
+      border: 1px solid #ffffff;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      background: #ffffff;
+      color: #050505;
+      font-weight: 600;
+      display: none;
+    }
+
+    @media (min-width: 768px) {
+      .nav-cta { display: inline-flex; }
+    }
+
+    /* ---------------- HERO ---------------- */
+
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 2fr);
+      gap: 28px;
+      padding: 26px 24px 28px;
+      background: linear-gradient(135deg, rgba(18,18,18,0.95), rgba(8,8,8,0.98));
+      border-radius: 28px;
+      border: 1px solid #262626;
+      box-shadow: var(--shadow-soft);
+      position: relative;
+      overflow: hidden;
+      margin-bottom: 40px;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: -40%;
+      background:
+        radial-gradient(circle at 0% 0%, rgba(255, 255, 255, 0.08), transparent 55%),
+        radial-gradient(circle at 80% 120%, rgba(250, 250, 250, 0.05), transparent 55%);
+      opacity: 0.7;
+      pointer-events: none;
+    }
+
+    .hero-inner {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+      gap: 24px;
+      align-items: center;
+    }
+
+    @media (max-width: 800px) {
+      .hero-inner {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    .hero-kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      border: 1px solid #3f3f3f;
+      background: rgba(10,10,10,0.9);
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: #d4d4d4;
+      margin-bottom: 14px;
+    }
+
+    .hero-kicker-dot {
+      width: 6px;
+      height: 6px;
+      background: #f5f5f5;
+      border-radius: 999px;
+    }
+
+    .hero-title {
+      font-size: clamp(32px, 5vw, 44px);
+      font-weight: 600;
+      letter-spacing: -0.03em;
+      margin-bottom: 14px;
+    }
+
+    .hero-title span {
+      color: #fafafa;
+    }
+
+    .hero-subtitle {
+      font-size: 15px;
+      max-width: 540px;
+      color: var(--muted);
+      margin-bottom: 20px;
+    }
+
+    .hero-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 22px;
+    }
+
+    .hero-tag {
+      padding: 4px 9px;
+      border-radius: 999px;
+      border: 1px solid #404040;
+      font-size: 11px;
+      color: #e5e5e5;
+      background: rgba(12,12,12,0.9);
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .btn-primary {
+      padding: 10px 20px;
+      border-radius: 999px;
+      border: 1px solid #ffffff;
+      background: #ffffff;
+      color: #050505;
+      font-size: 13px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      cursor: pointer;
+      transition: transform var(--transition-med), box-shadow var(--transition-med), background var(--transition-med);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-1px) translateZ(0);
+      box-shadow: 0 18px 40px rgba(0, 0, 0, 0.9);
+      background: #f4f4f4;
+    }
+
+    .btn-secondary {
+      padding: 9px 18px;
+      border-radius: 999px;
+      border: 1px solid #3f3f3f;
+      background: rgba(12,12,12,0.9);
+      color: #e5e5e5;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      cursor: pointer;
+      transition: border-color var(--transition-fast), background var(--transition-fast), color var(--transition-fast);
+    }
+
+    .btn-secondary:hover {
+      border-color: #fafafa;
+      background: #111111;
+      color: #ffffff;
+    }
+
+    .hero-right {
+      display: grid;
+      gap: 10px;
+    }
+
+    .hero-right-row {
+      display: grid;
+      grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
+      gap: 10px;
+    }
+
+    @media (max-width: 800px) {
+      .hero-right-row {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    .mini-panel {
+      background: rgba(10,10,10,0.95);
+      border-radius: 18px;
+      border: 1px solid #262626;
+      padding: 12px 14px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .mini-panel::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      background: linear-gradient(to bottom right, rgba(255,255,255,0.06), transparent 55%);
+      opacity: 0;
+      transition: opacity var(--transition-med);
+      pointer-events: none;
+    }
+
+    .mini-panel:hover::after {
+      opacity: 1;
+    }
+
+    .mini-label {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: #d4d4d4;
+      margin-bottom: 8px;
+    }
+
+    .mini-stat {
+      font-size: 22px;
+      font-weight: 600;
+      margin-bottom: 2px;
+    }
+
+    .mini-caption {
+      font-size: 11px;
+      color: var(--muted);
+    }
+
+    .mini-chip-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 4px;
+    }
+
+    .mini-chip {
+      padding: 3px 8px;
+      border-radius: 999px;
+      border: 1px solid #3f3f3f;
+      font-size: 10px;
+      color: #d4d4d4;
+    }
+
+    .hero-note {
+      font-size: 11px;
+      color: var(--muted);
+      margin-top: 6px;
+    }
+
+    /* ---------------- GENERIC SECTION ---------------- */
+
+    section {
+      margin-bottom: 42px;
+    }
+
+    .section-header {
+      margin-bottom: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .section-kicker {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: var(--muted);
+    }
+
+    .section-title {
+      font-size: 20px;
+      font-weight: 500;
+      letter-spacing: -0.02em;
+    }
+
+    .section-subtitle {
+      font-size: 13px;
+      color: var(--muted);
+      max-width: 520px;
+    }
+
+    /* ---------------- CARD GRID ---------------- */
+
+    .card-grid {
+      display: grid;
+      gap: 16px;
+    }
+
+    @media (min-width: 700px) {
+      .card-grid.cols-3 {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+      .card-grid.cols-2 {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 699px) {
+      .card-grid.cols-3,
+      .card-grid.cols-2 {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    .card {
+      position: relative;
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border-subtle);
+      background: radial-gradient(circle at top, #171717, #050505);
+      padding: 18px 18px 16px;
+      overflow: hidden;
+      transition: transform var(--transition-med), box-shadow var(--transition-med), border-color var(--transition-med), background var(--transition-med);
+    }
+
+    .card::before {
+      content: "";
+      position: absolute;
+      inset: -40%;
+      background: radial-gradient(circle at 0% 0%, rgba(255,255,255,0.10), transparent 55%);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity var(--transition-med), transform var(--transition-med);
+      transform: translate3d(0, 10px, 0);
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+      border-color: #404040;
+      box-shadow: 0 18px 40px rgba(0,0,0,0.9);
+      background: radial-gradient(circle at top, #1c1c1c, #050505);
+    }
+
+    .card:hover::before {
+      opacity: 1;
+      transform: translate3d(0, 0, 0);
+    }
+
+    .card-label {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: #d4d4d4;
+      margin-bottom: 8px;
+    }
+
+    .card-title {
+      font-size: 15px;
+      margin-bottom: 4px;
+      font-weight: 500;
+    }
+
+    .card-tagline {
+      font-size: 12px;
+      color: var(--muted);
+      margin-bottom: 10px;
+    }
+
+    .card-meta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 8px;
+    }
+
+    .card-meta-pill {
+      padding: 4px 8px;
+      border-radius: 999px;
+      border: 1px solid #404040;
+      font-size: 11px;
+      color: #e5e5e5;
+    }
+
+    .card-list {
+      list-style: none;
+      font-size: 12px;
+      color: #d4d4d4;
+      display: grid;
+      gap: 3px;
+    }
+
+    .card-list li::before {
+      content: "— ";
+      color: var(--muted);
+    }
+
+    .badge-outline {
+      padding: 3px 8px;
+      border-radius: 999px;
+      border: 1px solid #404040;
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: #e5e5e5;
+    }
+
+    /* ---------------- TIMINGS ---------------- */
+
+    .timings-grid {
+      display: grid;
+      gap: 16px;
+    }
+
+    @media (min-width: 700px) {
+      .timings-grid {
+        grid-template-columns: 2fr 3fr;
+      }
+    }
+
+    .timing-card {
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border-subtle);
+      background: radial-gradient(circle at top, #332424, #050505);
+      padding: 18px;
+    }
+
+    .timing-title {
+      font-size: 14px;
+      font-weight: 500;
+      margin-bottom: 8px;
+    }
+
+    .timing-rows {
+      display: grid;
+      gap: 6px;
+      font-size: 12px;
+      color: #e5e5e5;
+    }
+
+    .timing-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 8px;
+    }
+
+    .timing-label {
+      color: var(--muted);
+    }
+
+    .legend {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 7px;
+      margin-top: 10px;
+      font-size: 11px;
+      color: var(--muted);
+    }
+
+    .legend span {
+      padding: 3px 8px;
+      border-radius: 999px;
+      border: 1px solid #404040;
+    }
+
+    /* ---------------- BOOKING ---------------- */
+
+    .booking-layout {
+      display: grid;
+      gap: 16px;
+    }
+
+    @media (min-width: 800px) {
+      .booking-layout {
+        grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
+      }
+    }
+
+    .booking-panel {
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border-subtle);
+      background: radial-gradient(circle at top, #141414, #050505);
+      padding: 18px 18px 16px;
+    }
+
+    .booking-steps {
+      font-size: 12px;
+      color: #e5e5e5;
+      display: grid;
+      gap: 7px;
+      margin-top: 8px;
+      list-style: none;
+      counter-reset: step;
+    }
+
+    .booking-steps li {
+      counter-increment: step;
+      padding-left: 22px;
+      position: relative;
+    }
+
+    .booking-steps li::before {
+      content: counter(step);
+      position: absolute;
+      left: 0;
+      top: 1px;
+      width: 16px;
+      height: 16px;
+      border-radius: 999px;
+      border: 1px solid #404040;
+      font-size: 10px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      color: #e5e5e5;
+    }
+
+    .booking-meta {
+      font-size: 11px;
+      color: var(--muted);
+      margin-top: 8px;
+    }
+
+    .booking-pill-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 10px;
+    }
+
+    .booking-pill {
+      padding: 4px 8px;
+      border-radius: 999px;
+      border: 1px solid #404040;
+      font-size: 11px;
+      color: #e5e5e5;
+    }
+
+    /* ---------------- FOOD ---------------- */
+
+    .food-grid {
+      display: grid;
+      gap: 16px;
+    }
+
+    @media (min-width: 700px) {
+      .food-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    /* ---------------- CORPORATE ---------------- */
+
+    .corporate-layout {
+      display: grid;
+      gap: 16px;
+    }
+
+    @media (min-width: 900px) {
+      .corporate-layout {
+        grid-template-columns: 3fr 2fr;
+      }
+    }
+
+    .chip-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 6px;
+    }
+
+    .chip {
+      padding: 4px 9px;
+      border-radius: 999px;
+      border: 1px solid #404040;
+      font-size: 11px;
+      color: #e5e5e5;
+    }
+
+    .divider {
+      margin: 40px 0 22px;
+      border-top: 1px solid #171717;
+    }
+
+    /* ---------------- FOOTER ---------------- */
+
+    .footer {
+      padding-top: 26px;
+      border-top: 1px solid #111111;
+      font-size: 11px;
+      color: var(--muted);
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: space-between;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .footer-links a {
+      text-decoration: underline dotted;
+      text-underline-offset: 3px;
+    }
+
+    /* ---------------- ANIMATIONS ---------------- */
+
+    .fade-in {
+      opacity: 0;
+      transform: translateY(10px);
+      transition: opacity 380ms ease-out, transform 380ms ease-out;
+    }
+
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="page">
+    <!-- NAVBAR -->
+    <header class="nav">
+      <div class="nav-left">
+        <div class="logo-mark">TAS</div>
+        <div class="brand">
+          <!-- Change name to your facility -->
+          <div class="brand-title">The Athletic Society</div>
+          <div class="brand-sub">Indoor · Outdoor · Aquatics</div>
+        </div>
+      </div>
+      <nav class="nav-links">
+        <a href="#sports">Sports</a>
+        <a href="#timings">Timings</a>
+        <a href="#bookings">Bookings</a>
+        <a href="#corporate">Corporate</a>
+        <a href="#food">Food</a>
+      </nav>
+      <a href="#bookings" class="nav-cta">Book A Slot</a>
+    </header>
+
+    <!-- HERO -->
+    <section class="hero fade-in">
+      <div class="hero-inner">
+        <div class="hero-left">
+          <div class="hero-kicker">
+            <span class="hero-kicker-dot"></span>
+            <span>Multi-Sport Performance Hub</span>
+          </div>
+
+          <h1 class="hero-title">
+             Sports Arena built for serious play
+          </h1>
+
+          <p class="hero-subtitle">
+            Indoor badminton, cricket, padel, pickleball, basketball, swimming and athlete-first food —
+            presented in a clean slate space that keeps the focus on performance.
+          </p>
+
+          <div class="hero-tags">
+            <div class="hero-tag">Indoor Badminton</div>
+            <div class="hero-tag">Cricket Nets & Box Cricket</div>
+            <div class="hero-tag">Ground Cricket</div>
+            <div class="hero-tag">Padel & Pickleball</div>
+            <div class="hero-tag">Basketball</div>
+            <div class="hero-tag">Swimming Pool</div>
+            <div class="hero-tag">Healthy Food & Café</div>
+          </div>
+
+          <div class="hero-actions">
+            <a href="#bookings" class="btn-primary">
+              Book a Session
+              <span>→</span>
+            </a>
+            <a href="#timings" class="btn-secondary">
+              View Timings
+            </a>
+          </div>
+
+          <p class="hero-note">
+            This is a sample information website. Replace names, timings and policies with your actual facility details.
+          </p>
+        </div>
+
+        <div class="hero-right">
+          <div class="hero-right-row">
+            <div class="mini-panel">
+              <div class="mini-label">Capacity</div>
+              <div class="mini-stat">500+</div>
+              <div class="mini-caption">Members, leagues & corporate players handled comfortably.</div>
+              <div class="mini-chip-row">
+                <div class="mini-chip">Online bookings</div>
+                <div class="mini-chip">Slot-based play</div>
+              </div>
+            </div>
+            <div class="mini-panel">
+              <div class="mini-label">Sports</div>
+              <div class="mini-stat">8</div>
+              <div class="mini-caption">Indoor · Outdoor · Aquatic</div>
+              <div class="mini-chip-row">
+                <div class="mini-chip">Racket</div>
+                <div class="mini-chip">Cricket</div>
+                <div class="mini-chip">Team</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="hero-right-row">
+            <div class="mini-panel">
+              <div class="mini-label">Corporate</div>
+              <div class="mini-stat">Leagues & Days</div>
+              <div class="mini-caption">End-to-end managed events with match presentation & branding.</div>
+            </div>
+            <div class="mini-panel">
+              <div class="mini-label">Fuel</div>
+              <div class="mini-stat">Athlete-First</div>
+              <div class="mini-caption">Macro-aware menu plus a relaxed cafeteria zone.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SPORTS -->
+    <section id="sports" class="fade-in">
+      <div class="section-header">
+        <div class="section-kicker">Sports Catalogue</div>
+        <h2 class="section-title">Spaces built for movement.</h2>
+        <p class="section-subtitle">
+          Each sport gets its own dedicated zone. Distances, run-ups and clearances are planned for real-match intensity.
+        </p>
+      </div>
+
+      <div class="card-grid cols-3">
+        <!-- Indoor Badminton -->
+        <article class="card">
+          <div class="card-label">Indoor</div>
+          <h3 class="card-title">Badminton Arena</h3>
+          <p class="card-tagline">Tournament-standard wooden floors with anti-glare lighting.</p>
+          <div class="card-meta-row">
+            <span class="card-meta-pill">Multiple synthetic courts</span>
+            <span class="card-meta-pill">Coaching & sparring</span>
+          </div>
+          <ul class="card-list">
+            <li>Dedicated training & recreation slots.</li>
+            <li>Matches for club, college & corporate players.</li>
+            <li>Option to host ranking mini-tournaments.</li>
+          </ul>
+        </article>
+
+        <!-- Cricket Nets -->
+        <article class="card">
+          <div class="card-label">Practice</div>
+          <h3 class="card-title">Cricket Nets</h3>
+          <p class="card-tagline">Run-up friendly nets for pace and spin sessions.</p>
+          <div class="card-meta-row">
+            <span class="card-meta-pill">Bowling machine ready</span>
+            <span class="card-meta-pill">Coach add-on</span>
+          </div>
+          <ul class="card-list">
+            <li>Book by lane & duration.</li>
+            <li>Ideal for academies and serious weekend cricketers.</li>
+            <li>Space for video-analysis setup.</li>
+          </ul>
+        </article>
+
+        <!-- Box Cricket -->
+        <article class="card">
+          <div class="card-label">Small-Sided</div>
+          <h3 class="card-title">Box Cricket Arena</h3>
+          <p class="card-tagline">High-energy, short-format cricket under lights.</p>
+          <div class="card-meta-row">
+            <span class="card-meta-pill">Boundary nets</span>
+            <span class="card-meta-pill">Corporate night leagues</span>
+          </div>
+          <ul class="card-list">
+            <li>Structured scorekeeping and match rules support.</li>
+            <li>Perfect for tournaments & team-building events.</li>
+            <li>Customizable playing conditions (overs, powerplays, etc.).</li>
+          </ul>
+        </article>
+
+        <!-- Ground Cricket -->
+        <article class="card">
+          <div class="card-label">Full-Size</div>
+          <h3 class="card-title">Ground Cricket</h3>
+          <p class="card-tagline">Outfield and pitch curated for full-format games.</p>
+          <div class="card-meta-row">
+            <span class="card-meta-pill">Day & night slots</span>
+            <span class="card-meta-pill">League scheduling</span>
+          </div>
+          <ul class="card-list">
+            <li>Book for tournaments, league fixtures or practice matches.</li>
+            <li>Match officials & scorers available on request.</li>
+            <li>Basic match presentation setup support.</li>
+          </ul>
+        </article>
+
+        <!-- Padel -->
+        <article class="card">
+          <div class="card-label">Racket</div>
+          <h3 class="card-title">Padel Courts</h3>
+          <p class="card-tagline">Glass-walled padel courts with clean sightlines.</p>
+          <div class="card-meta-row">
+            <span class="card-meta-pill">Beginner-friendly</span>
+            <span class="card-meta-pill">Doubles play</span>
+          </div>
+          <ul class="card-list">
+            <li>Coaching & introductory clinics available.</li>
+            <li>Regular club ladders and mini-leagues.</li>
+            <li>Ideal for corporate takeovers and socials.</li>
+          </ul>
+        </article>
+
+        <!-- Pickleball -->
+        <article class="card">
+          <div class="card-label">Racket</div>
+          <h3 class="card-title">Pickleball Courts</h3>
+          <p class="card-tagline">Short-format court sport with a low learning curve.</p>
+          <div class="card-meta-row">
+            <span class="card-meta-pill">Beginner & advanced lanes</span>
+            <span class="card-meta-pill">League nights</span>
+          </div>
+          <ul class="card-list">
+            <li>Great for mixed-skill corporate groups.</li>
+            <li>Structured open-play & coaching windows.</li>
+            <li>Equipment rental available on-site.</li>
+          </ul>
+        </article>
+
+        <!-- Basketball -->
+        <article class="card">
+          <div class="card-label">Team Sport</div>
+          <h3 class="card-title">Basketball Court</h3>
+          <p class="card-tagline">Full-court play with game-ready markings.</p>
+          <div class="card-meta-row">
+            <span class="card-meta-pill">Pick-up games</span>
+            <span class="card-meta-pill">3x3 & 5x5</span>
+          </div>
+          <ul class="card-list">
+            <li>Book full or half court for teams.</li>
+            <li>Weekend tournaments & corporate cups.</li>
+            <li>Scoreboard and PA tie-in available.</li>
+          </ul>
+        </article>
+
+        <!-- Swimming Pool -->
+        <article class="card">
+          <div class="card-label">Aquatics</div>
+          <h3 class="card-title">Swimming Pool</h3>
+          <p class="card-tagline">Lane-based pool for training and recovery.</p>
+          <div class="card-meta-row">
+            <span class="card-meta-pill">Adult & kids lanes</span>
+            <span class="card-meta-pill">Coaching & aqua-fitness</span>
+          </div>
+          <ul class="card-list">
+            <li>Time-tabled lap sessions and open swim.</li>
+            <li>Pool can be reserved for teams & clubs.</li>
+            <li>Basic recovery protocols supported (subject to local rules).</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <!-- TIMINGS -->
+    <section id="timings" class="fade-in">
+      <div class="section-header">
+        <div class="section-kicker">Timings</div>
+        <h2 class="section-title">Structured for early birds and night leagues.</h2>
+        <p class="section-subtitle">
+          Replace these with your actual operating hours and sport-wise slots. Keep the structure, not the sample values.
+        </p>
+      </div>
+
+      <div class="timings-grid">
+        <div class="timing-card">
+          <h3 class="timing-title">Facility Hours</h3>
+          <div class="timing-rows">
+            <div class="timing-row">
+              <span class="timing-label">Weekdays (Mon–Fri)</span>
+              <span>5:30 AM – 11:00 PM</span>
+            </div>
+            <div class="timing-row">
+              <span class="timing-label">Weekends (Sat–Sun)</span>
+              <span>5:30 AM – 11:30 PM</span>
+            </div>
+            <div class="timing-row">
+              <span class="timing-label">Public Holidays</span>
+              <span>Curated slots · On request</span>
+            </div>
+          </div>
+          <div class="legend">
+            <span>✓ Timings subject to local regulations.</span>
+            <span>✓ Last booking typically 60–90 mins before closing.</span>
+          </div>
+        </div>
+
+        <div class="timing-card">
+          <h3 class="timing-title">Sport-Specific Windows</h3>
+          <div class="timing-rows">
+            <div class="timing-row">
+              <span class="timing-label">Indoor Badminton</span>
+              <span>Prime slots · 6:00–10:00 AM, 5:00–10:00 PM</span>
+            </div>
+            <div class="timing-row">
+              <span class="timing-label">Cricket Nets / Box</span>
+              <span>All day; night lights for late sessions</span>
+            </div>
+            <div class="timing-row">
+              <span class="timing-label">Ground Cricket</span>
+              <span>Morning + full-day blocks (match wise)</span>
+            </div>
+            <div class="timing-row">
+              <span class="timing-label">Padel & Pickleball</span>
+              <span>Rotating 60–90 min slots</span>
+            </div>
+            <div class="timing-row">
+              <span class="timing-label">Basketball</span>
+              <span>Team bookings + open court hours</span>
+            </div>
+            <div class="timing-row">
+              <span class="timing-label">Swimming Pool</span>
+              <span>Lane-timed; family & coaching windows</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- BOOKINGS -->
+    <section id="bookings" class="fade-in">
+      <div class="section-header">
+        <div class="section-kicker">Bookings</div>
+        <h2 class="section-title">Simple booking flows for up to 500+ active members.</h2>
+        <p class="section-subtitle">
+          Use this section to route users to your booking app, WhatsApp, phone, or contact form. The layout is neutral and legally clean.
+        </p>
+      </div>
+
+      <div class="booking-layout">
+        <div class="booking-panel">
+          <h3 class="card-title">How to book a slot</h3>
+          <p class="card-tagline">
+            Choose your sport, timing and duration. Confirm via your preferred channel — online form, app, or direct contact.
+          </p>
+
+          <ul class="booking-steps">
+            <li>Select the sport (e.g., badminton, box cricket, padel, pool) and number of players.</li>
+            <li>Pick a suitable slot based on the timings above.</li>
+            <li>Confirm booking via:
+              <strong>online form</strong>, <strong>call</strong>, or <strong>WhatsApp</strong>.
+            </li>
+            <li>Receive confirmation with slot ID and payment details.</li>
+            <li>Check in at reception on arrival and head straight to your court or lane.</li>
+          </ul>
+
+          <p class="booking-meta">
+            <strong>Note:</strong> Insert your real booking link or contact details here.
+            Example: <strong>+91-XXXXXXXXXX</strong> or <strong>book@tas.com</strong>.
+          </p>
+
+          <div class="booking-pill-row">
+            <span class="booking-pill">Pay-per-use</span>
+            <span class="booking-pill">Memberships</span>
+            <span class="booking-pill">Team bookings</span>
+            <span class="booking-pill">Academy tie-ups</span>
+          </div>
+        </div>
+
+        <div class="booking-panel">
+          <h3 class="card-title">Dedicated member experience</h3>
+          <p class="card-tagline">
+            Handle up to 500+ active members comfortably with slot-based play and predictable schedules.
+          </p>
+
+          <ul class="card-list">
+            <li>Recurring slots for academies, coaches and teams.</li>
+            <li>Seasonal passes for regular badminton, cricket or pool users.</li>
+            <li>Priority windows for members during peak hours.</li>
+            <li>Optional digital check-in to track usage and attendance.</li>
+          </ul>
+
+          <p class="booking-meta">
+            Hook this page to any booking system — custom app, third-party platform, or manual process.
+            The structure is intentionally generic to avoid any copyright or branding conflicts.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOD SPACE -->
+    <section id="food" class="fade-in">
+      <div class="section-header">
+        <div class="section-kicker">Food Space</div>
+        <h2 class="section-title">Fuel and unwind without leaving the arena.</h2>
+        <p class="section-subtitle">
+          Two distinct zones: a performance-driven menu for athletes, and a relaxed cafeteria for teams and families.
+        </p>
+      </div>
+
+      <div class="food-grid">
+        <article class="card">
+          <div class="card-label">For Athletes</div>
+          <h3 class="card-title">Healthy Performance Bar</h3>
+          <p class="card-tagline">Macro-conscious options designed to sit light and fuel play.</p>
+
+          <div class="card-meta-row">
+            <span class="card-meta-pill">Hydration & recovery</span>
+            <span class="card-meta-pill">Light meals</span>
+          </div>
+
+          <ul class="card-list">
+            <li>Pre-session and post-session snack ideas.</li>
+            <li>High-protein, low-oil preparation styles.</li>
+            <li>Clearly marked vegetarian / non-vegetarian / vegan / gluten tags.</li>
+            <li>Replace with your actual menu and nutrition guidelines.</li>
+          </ul>
+        </article>
+
+        <article class="card">
+          <div class="card-label">For Everyone</div>
+          <h3 class="card-title">Cafeteria & Viewing Deck</h3>
+          <p class="card-tagline">Vantage point seating with a view into the playing zones.</p>
+
+          <div class="card-meta-row">
+            <span class="card-meta-pill">Coffee & café snacks</span>
+            <span class="card-meta-pill">Team huddles</span>
+          </div>
+
+          <ul class="card-list">
+            <li>Space for families and support staff to relax.</li>
+            <li>Meeting-table setup for corporate reviews post match.</li>
+            <li>Screen support for live scores, fixtures or streams.</li>
+            <li>Branding-friendly design for sponsors and partners.</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- CORPORATE / LEAGUES / PRESENTATION -->
+    <section id="corporate" class="fade-in">
+      <div class="section-header">
+        <div class="section-kicker">Corporate & Leagues</div>
+        <h2 class="section-title">Corporate events, leagues & match presentation — end to end.</h2>
+        <p class="section-subtitle">
+          Use this block to pitch structured sports days, weekend leagues and presentation ceremonies without copying any existing site.
+        </p>
+      </div>
+
+      <div class="corporate-layout">
+        <article class="card">
+          <div class="card-label">Corporate & Clubs</div>
+          <h3 class="card-title">Tailored Sports Days & Leagues</h3>
+          <p class="card-tagline">
+            From fixtures to finals, we help you run clean, on-time events across multiple sports.
+          </p>
+
+          <div class="chip-row">
+            <span class="chip">Multi-sport corporate days</span>
+            <span class="chip">Weekend league formats</span>
+            <span class="chip">Knockout & round-robin</span>
+          </div>
+
+          <ul class="card-list" style="margin-top: 10px;">
+            <li>Sport selection (badminton, cricket, padel, pickleball, basketball, swimming).</li>
+            <li>Slot-wise scheduling to avoid overlap and delays.</li>
+            <li>Basic officiating, umpires and scorers (as per agreement).</li>
+            <li>Support for branding, team jerseys and sponsor placements.</li>
+          </ul>
+        </article>
+
+        <article class="card">
+          <div class="card-label">Presentation</div>
+          <h3 class="card-title">Match Presentation & Ceremony</h3>
+          <p class="card-tagline">
+            Keep the end of every event sharp, photo-ready and memorable.
+          </p>
+
+          <ul class="card-list">
+            <li>Podium or backdrop zone for medals and trophies.</li>
+            <li>Announcer / MC support and structured award order.</li>
+            <li>Space for team photos, sponsor mentions and highlights.</li>
+            <li>Option to integrate live-score summaries or key statistics.</li>
+          </ul>
+
+          <div class="chip-row">
+            <span class="chip">Closing ceremonies</span>
+            <span class="chip">Trophy hand-offs</span>
+            <span class="chip">Sponsor visibility</span>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+      <div>
+        © <span id="year"></span> The Athletic Society.
+      </div>
+      <div class="footer-links">
+        <a href="#bookings">Bookings</a>
+        <a href="#corporate">Corporate Events</a>
+        <a href="#timings">Timings</a>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    // Set year
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    // IntersectionObserver for smooth fade-in
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("visible");
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll(".fade-in").forEach((el) => observer.observe(el));
+  </script>
+</body>
+</html>
