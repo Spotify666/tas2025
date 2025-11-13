@@ -68,12 +68,14 @@
       align-items: center;
       justify-content: space-between;
       padding: 10px 18px;
+      gap: 12px;
     }
 
     .nav-left {
       display: flex;
       align-items: center;
       gap: 10px;
+      min-width: 0;
     }
 
     .logo-mark {
@@ -89,12 +91,14 @@
       font-weight: 700;
       color: #050505;
       box-shadow: 0 0 0 1px rgba(0,0,0,0.7), 0 12px 25px rgba(0,0,0,0.8);
+      flex-shrink: 0;
     }
 
     .brand {
       display: flex;
       flex-direction: column;
       line-height: 1.1;
+      min-width: 0;
     }
 
     .brand-title {
@@ -102,23 +106,27 @@
       font-weight: 600;
       letter-spacing: 0.03em;
       text-transform: uppercase;
+      white-space: nowrap;
     }
 
     .brand-sub {
       font-size: 11px;
       color: var(--muted);
+      white-space: nowrap;
     }
 
     .nav-links {
       display: flex;
-      gap: 14px;
-      font-size: 12px;
+      gap: 10px;
+      font-size: 11px;
       text-transform: uppercase;
       letter-spacing: 0.12em;
+      flex-wrap: wrap;
+      justify-content: center;
     }
 
     .nav-links a {
-      padding: 6px 10px;
+      padding: 6px 9px;
       border-radius: 999px;
       border: 1px solid transparent;
       color: #d4d4d4;
@@ -143,10 +151,24 @@
       color: #050505;
       font-weight: 600;
       display: none;
+      white-space: nowrap;
     }
 
     @media (min-width: 768px) {
       .nav-cta { display: inline-flex; }
+    }
+
+    @media (max-width: 640px) {
+      .nav {
+        flex-wrap: wrap;
+        padding: 8px 12px;
+      }
+      .nav-links {
+        justify-content: flex-start;
+      }
+      .brand-title {
+        font-size: 13px;
+      }
     }
 
     /* ---------------- HERO ---------------- */
@@ -188,6 +210,9 @@
     @media (max-width: 800px) {
       .hero-inner {
         grid-template-columns: minmax(0, 1fr);
+      }
+      .hero {
+        padding: 20px 18px 22px;
       }
     }
 
@@ -252,6 +277,13 @@
       flex-wrap: wrap;
       gap: 10px;
       align-items: center;
+    }
+
+    @media (max-width: 480px) {
+      .hero-actions {
+        flex-direction: column;
+        align-items: flex-start;
+      }
     }
 
     .btn-primary {
@@ -654,6 +686,91 @@
       color: #e5e5e5;
     }
 
+    /* ---- Calendar inside Bookings ---- */
+
+    .calendar-card {
+      margin-top: 10px;
+      border-radius: var(--radius-md);
+      border: 1px solid #303030;
+      background: radial-gradient(circle at top, #181818, #050505);
+      padding: 14px 14px 12px;
+    }
+
+    .calendar-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 8px;
+      gap: 8px;
+    }
+
+    .calendar-title {
+      font-size: 13px;
+      font-weight: 500;
+    }
+
+    .calendar-hint {
+      font-size: 11px;
+      color: var(--muted);
+    }
+
+    .calendar-grid {
+      display: grid;
+      grid-template-columns: repeat(7, minmax(0, 1fr));
+      gap: 6px;
+      margin-top: 8px;
+    }
+
+    .calendar-day {
+      border-radius: 10px;
+      border: 1px solid #333333;
+      padding: 6px 0 7px;
+      font-size: 11px;
+      text-align: center;
+      color: #e5e5e5;
+      cursor: pointer;
+      background: #111111;
+      transition: background var(--transition-fast), color var(--transition-fast), border-color var(--transition-fast), transform var(--transition-fast), box-shadow var(--transition-fast);
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .calendar-day span {
+      display: block;
+    }
+
+    .calendar-day-date {
+      font-weight: 500;
+    }
+
+    .calendar-day-week {
+      font-size: 9px;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: #a3a3a3;
+    }
+
+    .calendar-day:hover {
+      background: #ffffff;
+      color: #050505;
+      border-color: #f5f5f5;
+      transform: translateY(-1px);
+      box-shadow: 0 10px 24px rgba(0,0,0,0.7);
+    }
+
+    .calendar-day.disabled {
+      opacity: 0.45;
+      cursor: default;
+      pointer-events: none;
+    }
+
+    @media (max-width: 520px) {
+      .calendar-grid {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+      }
+    }
+
     /* ---------------- FOOD ---------------- */
 
     .food-grid {
@@ -700,6 +817,62 @@
       border-top: 1px solid #171717;
     }
 
+    /* ---------------- LOCATION & PAYMENTS ---------------- */
+
+    .location-layout {
+      display: grid;
+      gap: 16px;
+    }
+
+    @media (min-width: 800px) {
+      .location-layout {
+        grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
+      }
+    }
+
+    .map-frame {
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border-subtle);
+      overflow: hidden;
+      min-height: 260px;
+      background: #050505;
+    }
+
+    .map-frame iframe {
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+
+    .payments-grid {
+      display: grid;
+      gap: 16px;
+    }
+
+    @media (min-width: 700px) {
+      .payments-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    .payment-detail {
+      font-size: 12px;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    .payment-label {
+      font-size: 12px;
+      font-weight: 500;
+      margin-bottom: 4px;
+    }
+
+    .payment-note {
+      margin-top: 10px;
+      font-size: 11px;
+      color: var(--muted);
+    }
+
     /* ---------------- FOOTER ---------------- */
 
     .footer {
@@ -736,6 +909,12 @@
       opacity: 1;
       transform: translateY(0);
     }
+
+    @media (max-width: 480px) {
+      .page {
+        padding: 18px 14px 48px;
+      }
+    }
   </style>
 </head>
 <body>
@@ -757,6 +936,8 @@
         <a href="#bookings">Bookings</a>
         <a href="#corporate">Corporate</a>
         <a href="#food">Food</a>
+        <a href="#location">Location</a>
+        <a href="#payments">Payments</a>
       </nav>
       <a href="#bookings" class="nav-cta">Book A Slot</a>
     </header>
@@ -1049,13 +1230,13 @@
       </div>
     </section>
 
-    <!-- BOOKINGS -->
+    <!-- BOOKINGS (with 14-day calendar + dummy Google Form URL) -->
     <section id="bookings" class="fade-in">
       <div class="section-header">
         <div class="section-kicker">Bookings</div>
         <h2 class="section-title">Simple booking flows for up to 500+ active members.</h2>
         <p class="section-subtitle">
-          Use this section to route users to your booking app, WhatsApp, phone, or contact form. The layout is neutral and legally clean.
+          Pick a date for the next two weeks and complete your booking in a simple form. Replace the dummy form link with your own.
         </p>
       </div>
 
@@ -1068,17 +1249,15 @@
 
           <ul class="booking-steps">
             <li>Select the sport (e.g., badminton, box cricket, padel, pool) and number of players.</li>
-            <li>Pick a suitable slot based on the timings above.</li>
-            <li>Confirm booking via:
-              <strong>online form</strong>, <strong>call</strong>, or <strong>WhatsApp</strong>.
-            </li>
-            <li>Receive confirmation with slot ID and payment details.</li>
-            <li>Check in at reception on arrival and head straight to your court or lane.</li>
+            <li>Check the timing windows above and pick a date from the calendar.</li>
+            <li>Tap on the date to open the booking form and fill in your details.</li>
+            <li>Complete payment as per the instructions (UPI / bank / on-venue).</li>
+            <li>Receive confirmation with slot ID and arrive 10–15 minutes early.</li>
           </ul>
 
           <p class="booking-meta">
-            <strong>Note:</strong> Insert your real booking link or contact details here.
-            Example: <strong>+91-XXXXXXXXXX</strong> or <strong>book@tas.com</strong>.
+            <strong>Note:</strong> The Google Form link used here is a placeholder.
+            Replace it with your own form URL and the correct entry parameters.
           </p>
 
           <div class="booking-pill-row">
@@ -1090,22 +1269,23 @@
         </div>
 
         <div class="booking-panel">
-          <h3 class="card-title">Dedicated member experience</h3>
+          <h3 class="card-title">Calendar · Next 14 Days</h3>
           <p class="card-tagline">
-            Handle up to 500+ active members comfortably with slot-based play and predictable schedules.
+            Tap a date to open the booking form with that day pre-filled.
           </p>
 
-          <ul class="card-list">
-            <li>Recurring slots for academies, coaches and teams.</li>
-            <li>Seasonal passes for regular badminton, cricket or pool users.</li>
-            <li>Priority windows for members during peak hours.</li>
-            <li>Optional digital check-in to track usage and attendance.</li>
-          </ul>
-
-          <p class="booking-meta">
-            Hook this page to any booking system — custom app, third-party platform, or manual process.
-            The structure is intentionally generic to avoid any copyright or branding conflicts.
-          </p>
+          <div class="calendar-card">
+            <div class="calendar-header">
+              <div class="calendar-title" id="calendar-title">Upcoming Dates</div>
+              <div class="calendar-hint">Scroll horizontally if dates wrap</div>
+            </div>
+            <div id="calendar-grid" class="calendar-grid">
+              <!-- JS will inject days here -->
+            </div>
+            <p class="booking-meta" style="margin-top:10px;">
+              All dates are generated based on your visitor’s current time. You can still validate dates on the backend or inside your Google Form.
+            </p>
+          </div>
         </div>
       </div>
     </section>
@@ -1216,6 +1396,128 @@
       </div>
     </section>
 
+    <!-- LOCATION SECTION (Option C: before footer, after corporate block) -->
+    <section id="location" class="fade-in">
+      <div class="section-header">
+        <div class="section-kicker">Location</div>
+        <h2 class="section-title">Easy access, clear directions.</h2>
+        <p class="section-subtitle">
+          Replace the map and address below with your exact facility coordinates and details.
+        </p>
+      </div>
+
+      <div class="location-layout">
+        <div class="map-frame">
+          <!-- Dummy Google Maps embed. Replace src with your own Maps link. -->
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!2m3!3d17.385044!4d78.486671!5e0!3m2!1sen!2sin!4v1700000000000"
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade">
+          </iframe>
+        </div>
+
+        <article class="card">
+          <div class="card-label">Address</div>
+          <h3 class="card-title">The Athletic Society</h3>
+          <p class="card-tagline">
+            Pallavi International School - Gandipet,
+            786, Himayath Nagar,Gandipet X Road,Hyderabad, Telangana - 500075
+          </p>
+          <div class="card-meta-row" style="margin-top:10px;">
+            <span class="card-meta-pill">On main road</span>
+            <span class="card-meta-pill">Parking available</span>
+          </div>
+          <p class="booking-meta" style="margin-top:10px; color:#fff;">
+            <strong>Directions & Contact:</strong>
+            <ul class="card-list" style="list-style:none; padding:0; margin:5px 0;">
+              <li>
+                <a href="https://www.google.com/maps?q=17.353539,78.330545" target="_blank" 
+                   style="text-decoration:none; color:#fff;">
+                  17.353539, 78.330545
+                </a>
+              </li>
+              <li>
+                <a href="https://maps.app.goo.gl/BDUJz7RgYkpc2Tms6" target="_blank" 
+                   style="text-decoration:none; color:#fff;">
+                  https://maps.app.goo.gl/BDUJz7RgYkpc2Tms6
+                </a>
+              </li>
+            </ul>
+          </p>
+          
+          <style>
+            .card-list a:hover {
+              color: #ccc; /* light gray on hover */
+              text-decoration: underline;
+            }
+          </style>
+          
+
+        </article>
+      </div>
+    </section>
+
+    <!-- PAYMENTS SECTION -->
+    <section id="payments" class="fade-in">
+      <div class="section-header">
+        <div class="section-kicker">Payments</div>
+        <h2 class="section-title">Multiple ways to confirm your slot.</h2>
+        <p class="section-subtitle">
+          Use this section to present UPI, bank transfer and pay-at-venue options in a clean way. Replace all placeholders with your actual details.
+        </p>
+      </div>
+
+      <div class="payments-grid">
+        <!-- UPI QR / UPI ID -->
+        <article class="card">
+          <div class="card-label">UPI</div>
+          <h3 class="card-title">UPI QR & ID</h3>
+          <p class="card-tagline">Fast, preferred option for most players.</p>
+
+          <p class="payment-label">UPI ID</p>
+          <p class="payment-detail">
+            tas2025@okaxis
+          </p>
+
+          <p class="payment-label" style="margin-top:10px;">QR Code</p>
+          <div style="margin-top:8px; border-radius:12px; overflow:hidden; border:1px solid #333; background:#000; display:flex; justify-content:center; align-items:center; padding:10px;">
+            <img
+              src="https://api.qrserver.com/v1/create-qr-code/?data=https://maps.app.goo.gl/BDUJz7RgYkpc2Tms6&size=180x180&color=ffffff&bgcolor=000000"
+              alt="Google Maps Location QR"
+              style="display:block; width:150px; height:150px; object-fit:contain; border:none;" />
+          </div>
+          
+        </article>
+        
+        </article>
+
+        <!-- Bank / Cash -->
+        <article class="card">
+          <div class="card-label">Other Options</div>
+          <h3 class="card-title">Bank Transfer & On-venue</h3>
+          <p class="card-tagline">For companies, teams and offline bookings.</p>
+
+          <p class="payment-label">Sample Bank Transfer</p>
+          <p class="payment-detail">
+            Account Name: The Athletic Society <br/>
+            Account No: 0XXXXXXXXXXX  <br/>
+            IFSC: HDFC0000000 <br/>
+            Bank: Indian Bank, Hyderabad
+          </p>
+
+          <p class="payment-label" style="margin-top:10px;">Pay at Venue</p>
+          <p class="payment-detail">
+            Cash / Card / UPI accepted at reception. <br/>
+            For leagues & corporate events, you can define custom invoicing and advance payment rules.
+          </p>
+
+          <p class="payment-note">
+            Always align your payment process with applicable local laws and tax / GST rules.
+          </p>
+        </article>
+      </div>
+    </section>
+
     <!-- FOOTER -->
     <footer class="footer">
       <div>
@@ -1225,6 +1527,8 @@
         <a href="#bookings">Bookings</a>
         <a href="#corporate">Corporate Events</a>
         <a href="#timings">Timings</a>
+        <a href="#location">Location</a>
+        <a href="#payments">Payments</a>
       </div>
     </footer>
   </div>
@@ -1244,6 +1548,62 @@
     }, { threshold: 0.1 });
 
     document.querySelectorAll(".fade-in").forEach((el) => observer.observe(el));
+
+    // ------------- 14-DAY CALENDAR + DUMMY GOOGLE FORM -------------
+
+    // Dummy Google Form base – replace with your real URL + entry param.
+    // Example of real value:
+    // const GOOGLE_FORM_BASE = "https://docs.google.com/forms/d/e/REAL_FORM_ID/viewform?usp=pp_url&entry.1234567890=";
+    const GOOGLE_FORM_BASE = "https://docs.google.com/forms/d/e/DUMMY_FORM_ID/viewform?usp=pp_url&entry.1234567890=";
+
+    const calendarGrid = document.getElementById("calendar-grid");
+
+    function weekdayShortName(idx) {
+      const names = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+      return names[idx] || "";
+    }
+
+    function buildCalendar(daysAhead = 14) {
+      const now = new Date();
+
+      for (let i = 0; i < daysAhead; i++) {
+        const d = new Date(now);
+        d.setDate(now.getDate() + i);
+
+        const yyyy = d.getFullYear();
+        const mm = String(d.getMonth() + 1).padStart(2, "0");
+        const dd = String(d.getDate()).padStart(2, "0");
+        const isoDate = `${yyyy}-${mm}-${dd}`;
+        const dispDay = dd;
+        const weekName = weekdayShortName(d.getDay());
+
+        const cell = document.createElement("button");
+        cell.type = "button";
+        cell.className = "calendar-day";
+
+        const spanDate = document.createElement("span");
+        spanDate.className = "calendar-day-date";
+        spanDate.textContent = dispDay;
+
+        const spanWeek = document.createElement("span");
+        spanWeek.className = "calendar-day-week";
+        spanWeek.textContent = weekName;
+
+        cell.appendChild(spanDate);
+        cell.appendChild(spanWeek);
+
+        cell.addEventListener("click", () => {
+          const targetUrl = GOOGLE_FORM_BASE + encodeURIComponent(isoDate);
+          window.open(targetUrl, "_blank", "noopener,noreferrer");
+        });
+
+        calendarGrid.appendChild(cell);
+      }
+    }
+
+    if (calendarGrid) {
+      buildCalendar(14);
+    }
   </script>
 </body>
 </html>
